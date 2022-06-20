@@ -5,9 +5,9 @@ import { FormSelect } from "./FormItems/FormSelect/FormSelect"
 export const Form = () => {
   const [field, setField] = useState({
     firstName: {
-      value: '',
-      style: 'item__field',
-      error: ''
+      value: "",
+      style: "item__field",
+      error: "",
     },
     // lastName: "",
     // email: "",
@@ -17,25 +17,45 @@ export const Form = () => {
 
   function validate(e) {
     const regCapitalized = /^[A-Z\s]*$/
-      if (!regCapitalized.test(e.target.value.charAt(0))) {
-        setField(prev => ({
-          ...prev,
-        firstName: { ...prev.firstName, style: 'field-error', error: 'capitalized'},
-        }))
+    const regName = /^[a-zA-Z\s]*$/
+
+    if (!regName.test(e.target.value)) {
+      setField((prev) => ({
+        ...prev,
+        firstName: {
+          ...prev.firstName,
+          style: "field-error",
+          error: " contained only letters",
+        },
+      }))
+    } else if (!regCapitalized.test(e.target.value.charAt(0))) {
+      setField((prev) => ({
+        ...prev,
+        firstName: {
+          ...prev.firstName,
+          style: "field-error",
+          error: "capitalized",
+        },
+      }))
+    } else if (!e.target.value) {
+      setField((prev) => ({
+        ...prev,
+        firstName: { ...prev.firstName, style: "field-error", error: "filled" },
+      }))
     }
   }
 
   const handleFirstName = (e) => {
-    setField(prev => ({
+    setField((prev) => ({
       ...prev,
-    firstName: { ...prev.firstName, value: e.target.value }
+      firstName: { ...prev.firstName, value: e.target.value },
     }))
   }
 
   const reset = () => {
-    setField(prev => ({
-      ...prev, 
-      firstName: {...prev.firstName, style: "item__field", error: ''}
+    setField((prev) => ({
+      ...prev,
+      firstName: { ...prev.firstName, style: "item__field", error: "" },
     }))
   }
 
@@ -49,10 +69,10 @@ export const Form = () => {
         label="First Name"
         onChange={handleFirstName}
         value={field.firstName.value}
-        onBlur = {validate}
-        onFocus ={reset}
-        error = {field.firstName.error}
-      />      
+        onBlur={validate}
+        onFocus={reset}
+        error={field.firstName.error}
+      />
 
       <FormInput
         className="item__field"
