@@ -14,3 +14,11 @@
     border-radius: 60px;
     padding: 15px;
   }
+
+  .field-error {
+    color: red;
+    border: 1px solid red;
+    box-sizing: border-box;
+    border-radius: 60px;
+    padding: 15px;
+  }

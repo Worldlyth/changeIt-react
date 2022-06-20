@@ -40,17 +40,13 @@
     background-color:#2f37cd ;
   }
     
-  .field-error {
-    color: red;
-    border-color: red;
-  }
   .field-correct {
     border-color: rgb(33, 255, 33);
   }
   
   .error-text {
     color: red;
-    font-size: 11px;
+    font-size: 13px;
     margin: 0;
   }
   
