@@ -15,34 +15,36 @@ export const Form = () => {
     // lifeEventDate: "",
   })
 
-  function validate(e) {
+  function validate(e) {  
     const regCapitalized = /^[A-Z\s]*$/
     const regName = /^[a-zA-Z\s]*$/
+    const fieldValue = e.target.value
 
-    if (!regName.test(e.target.value)) {
-      setField((prev) => ({
-        ...prev,
-        firstName: {
-          ...prev.firstName,
-          style: "field-error",
-          error: " contained only letters",
-        },
-      }))
-    } else if (!regCapitalized.test(e.target.value.charAt(0))) {
-      setField((prev) => ({
-        ...prev,
-        firstName: {
-          ...prev.firstName,
-          style: "field-error",
-          error: "capitalized",
-        },
-      }))
-    } else if (!e.target.value) {
-      setField((prev) => ({
-        ...prev,
-        firstName: { ...prev.firstName, style: "field-error", error: "filled" },
-      }))
+    if (!regName.test(fieldValue)) {
+      setError(" contained only letters")
+    } else if (!regCapitalized.test(fieldValue.charAt(0))) {
+      setError("capitalized")
+    } else if (!fieldValue) {
+      setError("filled")
+    } else if (fieldValue.length < 3) {
+      setError(" more than 3 letters")
+    } else {
+      setCorrect()
     }
+  }
+
+  const setError = (message) => {
+    setField((prev) => ({
+      ...prev,
+      firstName: { ...prev.firstName, style: "field-error", error: message },
+    }))
+  }
+
+  const setCorrect = () => {
+    setField((prev) => ({
+      ...prev,
+      firstName: { ...prev.firstName, style: "field-correct", error: '' },
+    }))
   }
 
   const handleFirstName = (e) => {
@@ -50,6 +52,8 @@ export const Form = () => {
       ...prev,
       firstName: { ...prev.firstName, value: e.target.value },
     }))
+    validate(e)
+    console.log(e.target.value);
   }
 
   const reset = () => {

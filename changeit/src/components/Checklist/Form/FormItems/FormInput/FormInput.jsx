@@ -18,8 +18,14 @@ export const FormInput = ({
   let errorMessage;
 
     if (error !== "") {
-      errorMessage = `The field must be ${error}`
+      errorMessage = `*The field must be ${error}`
     }
+
+    const [field, setField] = useState ({
+      value: '',
+      style: 'item__field',
+      error: ''
+    })
   
 
   return (
