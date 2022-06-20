@@ -3,19 +3,19 @@ import './footer.css'
 
 export const Footer = () => {
   return (
-    <div class="footer bg_pink">
-    <div class="footer__newsletter">
-      <div class="newsletter__title">Newsletter</div>
+    <div className="footer bg_pink">
+    <div className="footer__newsletter">
+      <div className="newsletter__title">Newsletter</div>
       <input
         type="text"
-        class="newsletter__form"
+        className="newsletter__form"
         placeholder="Enter Your Email"
       />
     </div>
 
-    <div class="copyright">© 2022 Change.it Ltd. All Rights Reserved</div>
+    <div className="copyright">© 2022 Change.it Ltd. All Rights Reserved</div>
 
-    <ul class="links">
+    <ul className="links">
       <li>Divorce</li>
       <li>Privacy</li>
       <li>Deed Poll Online</li>

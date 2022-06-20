@@ -5,20 +5,7 @@
     margin-bottom: 80px;
   }
   
-  .checklist__poster {
-    border-radius: 60px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 76px;
-    line-height: 112px;
-    padding: 89px 151px 292px 81px;
-    text-align: left;
-    grid-template-columns: 1/2;
-    grid-row: 1/2;
-    background-image: url("../Checklist/checklist-hand.png");
-    background-repeat: no-repeat;
-    background-position: bottom right 22%;
-  }
+
   
   .checklist__form {
     display: flex;
@@ -34,24 +21,7 @@
     grid-row: 1/2;
     font-family: 'Helvetica Now Display';
   }
-  
-  .form__item {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  .item__label {
-    margin-bottom: 10px;
-  }
-  
-  .item__field {
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 60px;
-    padding: 15px;
-  }
-  
+    
   .form__notice {
     font-size: 14px;
     margin-bottom: 40px;
@@ -69,24 +39,7 @@
   .form__button:hover {
     background-color:#2f37cd ;
   }
-  
-  .field__select {
-    box-sizing: border-box;
-    width: 100%;
-    border: 0;
-  }
-  
-  :nth-child(4) .item__field {
-    position: relative;
-  }
-  
-  :nth-child(4) .item__field::after {
-    content: "▼";
-    position: absolute;
-    right: 15px;
-    top: 18px;
-  }
-  
+    
   .field-error {
     color: red;
     border-color: red;

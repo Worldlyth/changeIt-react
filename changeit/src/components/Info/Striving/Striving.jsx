@@ -3,11 +3,11 @@ import './striving.css'
 
 export const Striving = () => {
   return (
-    <div class="striving">
-    <div class="striving__title">
+    <div className="striving">
+    <div className="striving__title">
       We strive to provide the very best in
-      <span class="span-yellow">automation</span>,
-      <span class="span-grey">coupled with a personal, human touch.</span>
+      <span className="span-yellow">automation</span>,
+      <span className="span-grey">coupled with a personal, human touch.</span>
     </div>
   </div>
   )
