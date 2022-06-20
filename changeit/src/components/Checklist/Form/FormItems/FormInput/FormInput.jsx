@@ -9,46 +9,55 @@ export const FormInput = ({ id, label, type, placeholder }) => {
     error: "",
   })
 
-  let errorMessage
-
   function validate(e) {
+const fieldValue = e.target.value
+
+    if (id === 'firstName' || id === 'lastName') {
+      validateNames(fieldValue)
+    }
+  }
+
+  function validateNames(fieldValue) {
     const regCapitalized = /^[A-Z\s]*$/
     const regName = /^[a-zA-Z\s]*$/
-    const fieldValue = e.target.value
 
-    if (!regName.test(fieldValue)) {
-      setError(" contained only letters")
-    } else if (!regCapitalized.test(fieldValue.charAt(0))) {
-      setError("capitalized")
-    } else if (!fieldValue) {
+    if (!fieldValue) {
       setError("filled")
     } else if (fieldValue.length < 3) {
       setError(" more than 3 letters")
+    } else if (!regName.test(fieldValue)) {
+      setError(" contained only letters")
+    } else if (!regCapitalized.test(fieldValue.charAt(0))) {
+      setError("capitalized")
     } else {
       setCorrect()
     }
   }
 
   const setError = (message) => {
-    setField(field.error = message, field.style = 'field-error')
-    errorMessage = `*${label} must be ${field.error}`
+    setField(() => ({
+      ...field,
+      style: "field-error",
+      error: `*${label} must be ${message}`,
+    }))
   }
 
   const setCorrect = () => {
-    setField((prev) => ({
-      ...prev,
-      firstName: { ...prev.firstName, style: "field-correct", error: "" },
+    setField(() => ({
+      ...field,
+      style: "field-correct",
     }))
   }
 
   const fieldHandler = (e) => {
-    setField((prev)=> ({...prev, value: e.target.value}))
+    setField(() => ({ ...field, value: e.target.value }))
   }
 
   const reset = () => {
-    setField((prev) => ({
-      ...prev,
-      firstName: { ...prev.firstName, style: "item__field", error: "" },
+    setField(() => ({
+      ...field,
+      style: "item__field",
+      error: "",
     }))
   }
 
@@ -64,11 +73,11 @@ export const FormInput = ({ id, label, type, placeholder }) => {
         id={id}
         name={id}
         onChange={fieldHandler}
-        value= {field.value}
-        onBlur ={validate}
-        onFocus = {reset}
+        value={field.value}
+        onBlur={validate}
+        onFocus={reset}
       />
-      <div className="error-text">{errorMessage}</div>
+      <div className="error-text">{field.error}</div>
     </div>
   )
 }
