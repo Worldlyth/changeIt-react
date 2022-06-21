@@ -39,8 +39,7 @@ export const FormInput = ({ id, label, type, placeholder }) => {
   }
 
   function validateEmail(value) {
-    const regEmail =
-      /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    const regEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
     if (!regEmail.test(value)) {
       setError(" matched to Email format")
     } else {

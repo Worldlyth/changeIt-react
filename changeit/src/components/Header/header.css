@@ -41,7 +41,7 @@
   
   .header-nav-menu {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     padding: 0;
     justify-self: end;
   }

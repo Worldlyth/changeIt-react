@@ -1,0 +1,24 @@
+.blog__item {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .item__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 23px;
+  }
+  
+  .item__text {
+    display: flex;
+  }
+  
+  .item__creation-date {
+    font-size: 15px;
+    color: grey;
+  }
