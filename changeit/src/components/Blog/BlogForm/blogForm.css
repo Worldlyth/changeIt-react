@@ -1,0 +1,22 @@
+.blog-content {
+    display: flex;
+    flex-direction: column;
+}
+.content__input {
+    display: flex;
+    flex-direction: column;
+}
+
+.content__title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.content__text {
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 40px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: 'Helvetica Now Display';
+}
