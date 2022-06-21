@@ -10,25 +10,54 @@ export const FormInput = ({ id, label, type, placeholder }) => {
   })
 
   function validate(e) {
-const fieldValue = e.target.value
+    const fieldValue = e.target.value
 
-    if (id === 'firstName' || id === 'lastName') {
+    if (id === "firstName" || id === "lastName") {
       validateNames(fieldValue)
+    } else if (id === "email") {
+      validateEmail(fieldValue)
+    } else if (id === "lifeEventDate") {
+      validateDate(fieldValue)
     }
   }
 
-  function validateNames(fieldValue) {
+  function validateNames(value) {
     const regCapitalized = /^[A-Z\s]*$/
     const regName = /^[a-zA-Z\s]*$/
 
-    if (!fieldValue) {
+    if (!value) {
       setError("filled")
-    } else if (fieldValue.length < 3) {
+    } else if (value.length < 3) {
       setError(" more than 3 letters")
-    } else if (!regName.test(fieldValue)) {
+    } else if (!regName.test(value)) {
       setError(" contained only letters")
-    } else if (!regCapitalized.test(fieldValue.charAt(0))) {
+    } else if (!regCapitalized.test(value.charAt(0))) {
       setError("capitalized")
+    } else {
+      setCorrect()
+    }
+  }
+
+  function validateEmail(value) {
+    const regEmail =
+      /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+    if (!regEmail.test(value)) {
+      setError(" matched to Email format")
+    } else {
+      setCorrect()
+    }
+  }
+
+  function validateDate(value) {
+    const fieldDate = Date.parse(value)
+    const regDate = /^\d{2}\.\d{2}\.\d{4}$/
+    const nowDate = new Date()
+    const timeStamp = Date.parse(nowDate)
+
+    if (!regDate.test(value)) {
+      setError(" matched to DD.MM.YYYY format")
+    } else if (fieldDate > timeStamp) {
+      setError(" Date that not letter than the current one")
     } else {
       setCorrect()
     }
