@@ -22,7 +22,7 @@ function validateSelect (e) {
   const setError = (message) => {
     setOption(() => ({
       ...option,
-      style: " field__select select-error",
+      style: " field__select field-error",
       error: `*${label} must be ${message}`,
     }))
   }
@@ -30,7 +30,7 @@ function validateSelect (e) {
   const setCorrect = () => {
     setOption(() => ({
       ...option,
-      style: "field__select select-correct",
+      style: "field__select field-correct",
     }))
   }
 

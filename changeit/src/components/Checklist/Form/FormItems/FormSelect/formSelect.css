@@ -7,7 +7,7 @@
     background-position: center right 20px;
   }
 
-  .select-error {
+  .field-error {
     color: red;
     border: 1px solid red;
     box-sizing: border-box;
@@ -15,7 +15,7 @@
     padding: 15px;
   }
 
-  .select-correct {
+  .field-correct {
     color: rgb(0, 209, 0);
     border: 1px solid rgb(0, 209, 0);
     box-sizing: border-box;
