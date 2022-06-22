@@ -1,9 +1,28 @@
 import React from "react"
 import "../BlogForm/blogForm.css"
 
-const BlogForm = (props) => {
+const BlogForm = ({create}) => {
+
+  const addPost = (e) => {
+    e.preventDefault()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const title = formData.get("title")
+    const text = formData.get("text")
+
+    const newPost = {
+      title,
+      text,
+      date: new Date().toLocaleString(),
+      id: Date.now(),
+    }
+    create(newPost)
+    form.reset()
+  }
+
   return (
-    <form className="form__input" id="blogForm" onSubmit={props.addPost}>
+    <form className="form__input" id="blogForm" onSubmit={addPost}>
       <label htmlFor="blogTitle" className="form__title">
         Title:
       </label>
