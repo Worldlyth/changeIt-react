@@ -14,6 +14,7 @@ const BlogNavigation = (props) => {
             type="search"
             placeholder=""
             id="filter"
+            onChange = {props.filter}
           />
         </div>
       </div>
@@ -21,14 +22,14 @@ const BlogNavigation = (props) => {
       <div className="stories__sort">
         <div className="sort__title">sort:</div>
         <select id="selectSortingByLetters" className="stories__sort-button" onChange={props.sort}>
-          <option value="" defaultValue>
+          <option value="" defaultValue=''>
             -
           </option>
           <option value="AZ">A - Z</option>
           <option value="ZA">Z - A</option>
         </select>
 
-        <select id="selectSortingByDate" className="stories__sort-button">
+        <select id="selectSortingByDate" className="stories__sort-button" onChange={props.sort}>
           <option value="" defaultValue>
             -
           </option>
