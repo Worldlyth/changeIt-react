@@ -14,6 +14,7 @@ export const Header = () => {
           <li><a href="#overview">Overview</a></li>
           <li><a href="#questions">How it works</a></li>
           <li><a href="#feedback">Reviews</a></li>
+          <li><a href="#blog">Blog</a></li>
           <li><a href="#checklist">Checklist</a></li>
         </ul>
       </div>

@@ -1,141 +1,76 @@
-import React from "react"
+import React, { useState } from "react"
+import Post from "./Post/Post"
 import "./blog.css"
-import { useState } from "react"
+import BlogForm from "./BlogForm/BlogForm"
+import BlogNavigation from "./BlogNavigation/BlogNavigation"
 
 export const Blog = () => {
-  function formatDate() {
-    const date = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-      day: new Date().getDate(),
-      hours: new Date().getHours(),
-      minutes: new Date().getMinutes(),
+  const [posts, setPosts] = useState([])
+
+  const addPost = (e) => {
+    e.preventDefault()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const title = formData.get("title")
+    const text = formData.get("text")
+
+    const newPost = {
+      title,
+      text,
+      date: new Date().toLocaleString(),
+      id: Date.now(),
     }
 
-    for (let key in date) {
-      if (date[key] < 10) date[key] = `0${date[key]}`
-    }
-
-    return `${date.year}-${date.month}-${date.day} ${date.hours}:${date.minutes}`
+    setPosts([...posts, newPost])
+    form.reset()
   }
 
+  const sort = (e) => {
+    const select = e.currentTarget
+    if (select.value === 'AZ') {
+      sortByLettersAZ()
+    } else if (select.value === 'ZA'){
+      sortByLettersZA()
+    }
+  }
 
+  const sortByLettersAZ = () => {
+    setPosts([...posts.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1
+      }
+      if (a.title > b.title) {
+        return 1
+      }
+      return 0
+    })])
+  }
 
-  const [post, setPost] = useState({
-    title: "",
-    text: "",
-  })
-
-const [storage, setStorage] = useState([])
-
-
-function addPost (e) {
-  const newPost = {
-    title: post.title,
-    text: post.text,
-    date: formatDate(),
-    id: Date.parse(new Date().getMilliseconds())
-  } 
-  e.preventDefault()
-  setStorage([...storage, newPost])
-  console.log(storage);
-  setPost({...post, title: '', text: ''})
-} 
-
+  const sortByLettersZA = () => {
+    setPosts([...posts.sort((a, b) => {
+      if (a.title < b.title) {
+        return 1
+      }
+      if (a.title > b.title) {
+        return -1
+      }
+      return 0
+    })])
+  }
 
   return (
-    <div className="blog">
+    <div className="blog" id="blog">
       <div className="blog-title">TELL US YOUR STORY</div>
-
       <div className="blog-content">
-        <form className="content__input" id="blogForm" onSubmit={addPost}>
-          <label htmlFor="blogTitle" className="content__title">
-            Title:
-          </label>
-          <input
-            type="text"
-            placeholder="Title"
-            className="content__text"
-            name="title"
-            id="blogTitle"
-            onChange={(e) => setPost({ ...post, title: e.target.value })}
-            value={post.title}
-          />
-
-          <label htmlFor="blogText" className="content__title">
-            Your story:
-          </label>
-          <textarea
-            placeholder="Your story"
-            className="content__text"
-            rows="10"
-            name="text"
-            id="blogText"
-            onChange={(e) => setPost({ ...post, text: e.target.value })}
-            value={post.text}
-          ></textarea>
-
-          <input
-            type="submit"
-            value="Tell your story"
-            className="feeback__button bg_blue"
-            id="blogButton"
-          ></input>
-        </form>
-
-        <div className="content__stories-navigation bg_yellow">
-          <div className="stories__title">STORIES</div>
-
-          <div className="stories__search">
-            <div className="sort__title">
-              <label htmlFor="filter">search:</label>
-              <input
-                className="search__input"
-                type="search"
-                placeholder=""
-                id="filter"
-              ></input>
-            </div>
-          </div>
-
-          <div className="stories__sort">
-            <div className="sort__title">sort:</div>
-            <select
-              id="selectSortingByLetters"
-              className="stories__sort-button"
-            >
-              <option value="" defaultValue>
-                -
-              </option>
-              <option value="AZ">A - Z</option>
-              <option value="ZA">Z - A</option>
-            </select>
-
-            <select id="selectSortingByDate" className="stories__sort-button">
-              <option value="" defaultValue>
-                -
-              </option>
-              <option value="dateUp">Date ↑</option>
-              <option value="dateDown">Date ↓</option>
-            </select>
-          </div>
-        </div>
-
+        <BlogForm addPost={addPost} />
+        <BlogNavigation sort={sort}/>
         <div className="stories__blog">
-          {storage.map((post)=>
-             <div className="blog__item bg_pink" key={post.id}>
-            <div className="item__title">
-            {post.title}
-              <div className="item__creation-date">{post.date}</div>
-            </div>
-            <div className="item__text">{post.text}</div>
-          </div> 
-          )}
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
         </div>
       </div>
     </div>
   )
 }
-
-
-
