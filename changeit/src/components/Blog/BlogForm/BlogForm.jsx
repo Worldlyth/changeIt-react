@@ -23,7 +23,7 @@ const BlogForm = ({create}) => {
 
   return (
     <form className="form__input" id="blogForm" onSubmit={addPost}>
-      <label htmlFor="blogTitle" className="form__title">
+      <label htmlFor="title" className="form__title">
         Title:
       </label>
       <input
@@ -34,7 +34,7 @@ const BlogForm = ({create}) => {
         id="title"
       />
 
-      <label htmlFor="blogText" className="form__title">
+      <label htmlFor="text" className="form__title">
         Your story:
       </label>
       <textarea

@@ -3,7 +3,7 @@ import "../BlogNavigation/blogNavigation.css"
 import FilterInput from "./FilterInput/FilterInput"
 import SelectSorting from "./SelectSorting/SelectSorting"
 
-const BlogNavigation = ({ posts, sort }) => {
+const BlogNavigation = ({ posts, sort, getFilterValue, getSortingValue, onChange }) => {
   const [sorting, setSorting] = useState("")
 
   const sortPostsList = (sorting) => {
@@ -39,13 +39,15 @@ const BlogNavigation = ({ posts, sort }) => {
       })
     }
     sort(sortedPosts)
+    getSortingValue(sorting)
+    onChange()
   }
 
   return (
     <div className="content__stories-navigation bg_yellow">
       <div className="stories__title">STORIES</div>
 
-      <FilterInput/>
+      <FilterInput getFilterValue={getFilterValue} onChange={onChange}/>
 
       <SelectSorting
         options={[
