@@ -12,11 +12,3 @@
   font-weight: 900;
   letter-spacing: 1px;
 }
-
-.stories__blog {
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-}
-
-

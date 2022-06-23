@@ -1,14 +1,18 @@
 import React from "react"
 import "../Post/post.css"
 
-export const Post = (title, text, date) => {
+const Post = (props) => {
+  const { post } = props
+
   return (
-    <div class="blog__item bg_pink">
-      <div class="item__title">
-        {title}
-        <div class="item__creation-date">{date}</div>
+    <div className="blog__post bg_pink" key={post.id}>
+      <div className="post__title">
+        {post.title}
+        <div className="post__creation-date">{post.date}</div>
       </div>
-      <div class="item__text">{text}</div>
+      <div className="post__text">{post.text}</div>
     </div>
   )
 }
+
+export default Post
