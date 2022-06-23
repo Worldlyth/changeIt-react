@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import "../BlogNavigation/blogNavigation.css"
+import FilterInput from "./FilterInput/FilterInput"
 import SelectSorting from "./SelectSorting/SelectSorting"
 
 const BlogNavigation = ({ posts, sort }) => {
@@ -44,17 +45,7 @@ const BlogNavigation = ({ posts, sort }) => {
     <div className="content__stories-navigation bg_yellow">
       <div className="stories__title">STORIES</div>
 
-      <div className="stories__search">
-        <div className="sort__title">
-          <label htmlFor="filter">search:</label>
-          <input
-            className="search__input"
-            type="search"
-            placeholder=""
-            id="filter"
-          />
-        </div>
-      </div>
+      <FilterInput/>
 
       <SelectSorting
         options={[

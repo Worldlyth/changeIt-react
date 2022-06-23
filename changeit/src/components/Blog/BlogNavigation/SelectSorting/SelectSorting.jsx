@@ -1,4 +1,5 @@
 import React from "react"
+import '../SelectSorting/selectSorting.css'
 
 const SelectSorting = ({ options, onChange, value }) => {
   return (
@@ -20,6 +21,7 @@ const SelectSorting = ({ options, onChange, value }) => {
           </option>
         ))}
       </select>
+      <div className="arrow"></div>
     </div>
   )
 }
