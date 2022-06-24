@@ -5,16 +5,15 @@ import BlogNavigation from "./BlogNavigation/BlogNavigation"
 import BlogStories from "./BlogStories/BlogStories"
 
 export const Blog = () => {
-  const [searchInput, setSearchInput] = useState ('')
+  const [searchInput, setSearchInput] = useState("")
   const [posts, setPosts] = useState([])
-  const [filteredPosts, setFilteredsPosts] = useState ([])
-  const [sorting, setSorting] = useState('')
+  const [filteredPosts, setFilteredsPosts] = useState([])
+  const [sorting, setSorting] = useState("")
 
-  useEffect (()=>{
-    let filteredPosts = posts.filter(post => post.title.includes(searchInput))
+  useEffect(() => {
+    let filteredPosts = posts.filter((post) => post.title.includes(searchInput))
     setFilteredsPosts(filteredPosts)
   }, [searchInput, posts])
-
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
@@ -32,14 +31,34 @@ export const Blog = () => {
     setSorting(sorting)
   }
 
-const setFilterResult = () => {
-  const filterResult = {
-    filter: searchInput,
-    sorting: sorting, 
-    key:filteredPosts.length
+  const setFilterResult = () => {
+    let isContain = false
+    let posts = []
+
+    const filterResult = {
+      filter: searchInput,
+      sorting: sorting,
+      key: filteredPosts.length,
+    }
+
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i)
+      let parsedItem = JSON.parse(key)
+      if (
+        parsedItem.filter === searchInput &&
+        parsedItem.sorting === sorting &&
+        parsedItem.key === filteredPosts.length
+      ) {
+        posts = JSON.parse(localStorage.getItem(key))
+        isContain = true
+      }
+    }
+
+    if (!isContain) {
+      posts = filteredPosts
+      localStorage.setItem(JSON.stringify(filterResult), JSON.stringify(posts))
+    }
   }
-  localStorage.setItem(JSON.stringify(filterResult), JSON.stringify(filteredPosts))
-}
 
 
   return (
